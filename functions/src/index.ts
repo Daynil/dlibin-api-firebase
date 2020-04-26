@@ -8,8 +8,6 @@ export const ping = functions.https.onRequest((req, res) => {
   res.send('success');
 });
 
-// TODO apply cors and test, then refresh Shelly's site (locally first?) to use this instead and test
-// test other files
 export const getDocument = functions.https.onRequest(async (req, res) => {
   const allowedOrigins = [
     'https://www.innerpathllc.com'
