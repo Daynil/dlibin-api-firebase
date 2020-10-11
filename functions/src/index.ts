@@ -11,7 +11,8 @@ export const ping = functions.https.onRequest((req, res) => {
 export const getDocument = functions.https.onRequest(async (req, res) => {
   const allowedOrigins = [
     'https://www.innerpathllc.com',
-    'http://localhost:8000' // testing only
+    'https://elastic-meitner-cb47ec.netlify.app'
+    //'http://localhost:8000' // testing only
   ];
   const allowedOrigin = arrContains(allowedOrigins, req.get('Origin') || '');
 
@@ -69,7 +70,8 @@ export const postEmail = functions.https.onRequest(async (req, res) => {
   const allowedOrigins = [
     'https://www.innerpathllc.com',
     'https://dlibin.net',
-    'http://localhost:8000' // testing only
+    'https://elastic-meitner-cb47ec.netlify.app'
+    //'http://localhost:8000' // testing only
   ];
   const allowedOrigin = arrContains(allowedOrigins, req.get('Origin') || '');
 
