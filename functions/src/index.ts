@@ -10,8 +10,8 @@ export const ping = functions.https.onRequest((req, res) => {
 
 export const getDocument = functions.https.onRequest(async (req, res) => {
   const allowedOrigins = [
-    'https://www.innerpathllc.com'
-    //'http://localhost:4200' // testing only
+    'https://www.innerpathllc.com',
+    'http://localhost:8000' // testing only
   ];
   const allowedOrigin = arrContains(allowedOrigins, req.get('Origin') || '');
 
@@ -68,8 +68,8 @@ export const getDocument = functions.https.onRequest(async (req, res) => {
 export const postEmail = functions.https.onRequest(async (req, res) => {
   const allowedOrigins = [
     'https://www.innerpathllc.com',
-    'https://dlibin.net'
-    //'http://localhost:4200' // testing only
+    'https://dlibin.net',
+    'http://localhost:8000' // testing only
   ];
   const allowedOrigin = arrContains(allowedOrigins, req.get('Origin') || '');
 
@@ -97,7 +97,7 @@ export const postEmail = functions.https.onRequest(async (req, res) => {
 
   sendGridMail = await import('@sendgrid/mail');
 
-  const mailData = req.body;
+  const mailData = JSON.parse(req.body);
   if (!mailData.subject) mailData.subject = 'Footer contact';
 
   sendGridMail.setApiKey(functions.config().sendgrid.apikey);
@@ -105,8 +105,8 @@ export const postEmail = functions.https.onRequest(async (req, res) => {
   try {
     await sendGridMail.send({
       from: mailData.email,
-      to: 'innerpath.inquiries@gmail.com',
-      //to: 'omegasol11@gmail.com', // testing only
+      //to: 'innerpath.inquiries@gmail.com',
+      to: 'omegasol11@gmail.com', // testing only
       subject: mailData.subject,
       html: `
         <div><b>Name:</b> ${mailData.first} ${mailData.last}</div>
