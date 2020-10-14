@@ -107,8 +107,8 @@ export const postEmail = functions.https.onRequest(async (req, res) => {
   try {
     await sendGridMail.send({
       from: mailData.email,
-      //to: 'innerpath.inquiries@gmail.com',
-      to: 'omegasol11@gmail.com', // testing only
+      to: 'innerpath.inquiries@gmail.com',
+      //to: 'omegasol11@gmail.com', // testing only
       subject: mailData.subject,
       html: `
         <div><b>Name:</b> ${mailData.first} ${mailData.last}</div>
